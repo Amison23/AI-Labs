@@ -1,2 +1,2 @@
-This is for lab6
+This is for lab
 
