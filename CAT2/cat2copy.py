@@ -24,15 +24,39 @@ mobiledata['PriceRange'] = label_encoder.fit_transform(mobiledata['PriceRange'])
 # Distribution of the target variable (price range)
 sns.countplot(x='BatteryPower', data=mobiledata)
 plt.title('Distribution of Mobile Batterry')
-plt.show()
+#plt.show()
 
 # Correlation heatmap
 plt.figure(figsize=(10, 8))
 sns.heatmap(mobiledata.corr(), annot=True, fmt='.2f')
 plt.title('Correlation Heatmap')
-plt.show()
+#plt.show()
 
-# Feature selection (let's say we select 'feature1' and 'feature2')
+sns.set(style='whitegrid')
+
+plt.figure(figsize=(8, 5))
+sns.countplot(x='PriceRange', data=mobiledata, palette='Set2')
+plt.title('Distribution of Mobile Price Ranges')
+plt.xlabel('Price Range')
+plt.ylabel('Count')
+plt.xticks(rotation=0)
+
+# Histogram for battery power
+plt.figure(figsize=(10, 5))
+sns.histplot(mobiledata['BatteryPower'], bins=30, kde=True, color='blue')
+plt.title('Distribution of Battery Power')
+plt.xlabel('Battery Power')
+plt.ylabel('Frequency')
+
+# Bar Plot for RAM vs price range
+plt.figure(figsize=(12, 6))
+sns.barplot(x='PriceRange', y='RAM', data=mobiledata, palette='Set2', estimator=sum)
+plt.title('Average  RAM by Price Range')
+plt.xlabel('Price Range')
+plt.ylabel('RAM')
+
+plt.show()
+# Feature selection (let's say we select RAM and Clockspeed)
 X = mobiledata[['RAM', 'ClockSpeed']]
 y = mobiledata['NoOfCores']
 
